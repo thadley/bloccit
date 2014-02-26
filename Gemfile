@@ -37,6 +37,8 @@ gem 'jquery-rails'
 gem 'faker'
 gem 'devise'
 gem 'cancan'
+gem 'redcarpet'
+gem 'simple_form'
 
 
 # To use ActiveModel has_secure_password
