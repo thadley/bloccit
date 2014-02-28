@@ -5,4 +5,4 @@ development:
   SENDGRID_PASSWORD:
   AWS_BUCKET:
 production:
-  AWS_BUCKET:
+  AWS_BUCKET: 
