@@ -39,6 +39,10 @@ gem 'devise'
 gem 'cancan'
 gem 'redcarpet'
 gem 'simple_form'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+gem 'figaro'
 
 
 # To use ActiveModel has_secure_password
