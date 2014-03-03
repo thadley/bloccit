@@ -34,6 +34,8 @@ rand(4..10).times do
     p.update_attribute(:created_at, Time.now - rand(600..31536000))
 
     topics.rotate!
+  end
+end
 
   post_count = Post.count
   User.all.each do |user|
@@ -44,8 +46,6 @@ rand(4..10).times do
         post: p)
       c.update_attribute(:created_at, Time.now - rand(600..31536000))
     end
-  end
-end
 end
 
 u = User.new(
