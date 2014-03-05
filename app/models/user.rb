@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
     self.favorites.where(post_id: post.id).first
   end
 
+  def voted(post)
+    self.votes.where(post_id: post.id).first
+  end
+
   ROLES = %w[member moderator admin]
   def role?(base_role)
     role.nil? ? false : ROLES.index(base_role.to_s) <= ROLES.index(role)
