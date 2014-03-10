@@ -12,10 +12,9 @@ class CommentsController < ApplicationController
 
     authorize! :create, @comment, message: "You need to be signed up to do that."
     if @comment.save
-        redirect_to [@topic, @post], notice: "Comment was saved successfully."
+       flash[:notice] = "Comment was saved successfully."
     else
       flash[:error] = "There was an error. Please try again."
-      render 'posts/show'
     end  
 
     respond_with(@comment) do |f|
@@ -32,10 +31,8 @@ class CommentsController < ApplicationController
     authorize! :destroy, @comment, message: "You need to own the comment to delete it."
     if @comment.destroy
       flash[:notice] = "Comment was removed."
-      redirect_to [@topic, @post]
     else
       flash[:error] = "Comment couldn't be deleted. Try again."
-      redirect_to [@topic, @post]
     end
 
     respond_with(@comment) do |f|
