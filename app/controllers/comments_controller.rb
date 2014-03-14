@@ -3,14 +3,14 @@ class CommentsController < ApplicationController
 
   def create
     @topic = Topic.find(params[:topic_id])
-    @post = Post.find(params[:post_id])
+    @post = @topic.posts.find(params[:post_id])
     @comments = @post.comments
 
-    @comment = current_user.comments.build(params[:comment])
+    @comment = current_user.comments.build(params.require(:comment).permit(:body, :post_id))
     @comment.post = @post
-    @new_comment = Comment.new
+    @new_comment = Comment.new 
 
-    authorize! :create, @comment, message: "You need to be signed up to do that."
+    authorize @comment
     if @comment.save
        flash[:notice] = "Comment was saved successfully."
     else
@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
    
     @comment = @post.comments.find(params[:id])
 
-    authorize! :destroy, @comment, message: "You need to own the comment to delete it."
+    authorize @comment
     if @comment.destroy
       flash[:notice] = "Comment was removed."
     else

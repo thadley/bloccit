@@ -1,5 +1,3 @@
-$('#comment-' +<%= @comment.id %>).hide();
-
 <% if @comment.destroyed? %>
   $('#comment-' +<%= @comment.id %>).hide();
   $('.js-comments-count').html("<%= @post.comments.count %> Comments");

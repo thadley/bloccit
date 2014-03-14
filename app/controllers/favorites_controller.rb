@@ -2,10 +2,10 @@ class FavoritesController < ApplicationController
   def create
     @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.find(params[:post_id])
+    favorite = current_user.favorites.build(post: @post)
 
-    favorite = current_user.favorites.create(post: @post)
-    authorize! :create, Favorite, message: "You cannot do that."
-    if favorite.valid?
+    authorize favorite
+    if favorite.save
       flash[:notice] = "Favorited post"
       redirect_to [@topic, @post]
     else
@@ -17,7 +17,8 @@ class FavoritesController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.find(params[:post_id])
     @favorite = current_user.favorites.find(params[:id])
-    authorize! :destroy, @favorite, message: "You cannot do that."
+
+    authorize @favorite
     if @favorite.destroy
       flash[:notice] = "Removed favorite."
       redirect_to [@topic, @post]
