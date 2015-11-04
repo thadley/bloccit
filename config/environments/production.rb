@@ -67,4 +67,6 @@ Bloccit::Application.configure do
 
   # http://bloccit.herokuapp.com
   config.action_mailer.default_url_options = { :host => 'trisha-bloccit.herokuapp.com' }
+
+  config.eager_load = true
 end
